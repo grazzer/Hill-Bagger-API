@@ -28,7 +28,6 @@ app = Flask(__name__)
 def hello_world():
     return "The Database of British and Irish Hills API"
 
-# return all data
 @app.route('/hills')
 def getHills():
     result = session.query(Hills)
@@ -69,4 +68,4 @@ def getMunros():
     else:
         return {'msg':'Resource not found'}, 404
 
-app.run()
+# app.run()
