@@ -39,4 +39,34 @@ def getHills():
     else:
         return {'msg':'Resource not found'}, 404
 
+@app.route('/hills/<string:name>')
+def getHillByName(name):
+    result = session.query(Hills).filter(Hills.columns.Name == name)
+    if result:
+        df = pd.read_sql(result.statement, result.session.bind)
+        jsonResult = df.to_json(orient = 'records')
+        return jsonResult
+    else:
+        return {'msg':'Resource not found'}, 404
+
+@app.route('/hills/<int:number>')
+def getHillByNumber(number):
+    result = session.query(Hills).filter(Hills.columns.Number == number)
+    if result:
+        df = pd.read_sql(result.statement, result.session.bind)
+        jsonResult = df.to_json(orient = 'records')
+        return jsonResult
+    else:
+        return {'msg':'Resource not found'}, 404
+
+@app.route('/munros')
+def getMunros():
+    result = session.query(Hills).filter(Hills.columns.M == 1)
+    if result:
+        df = pd.read_sql(result.statement, result.session.bind)
+        jsonResult = df.to_json(orient = 'records')
+        return jsonResult
+    else:
+        return {'msg':'Resource not found'}, 404
+
 app.run()
