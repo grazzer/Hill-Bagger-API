@@ -68,4 +68,4 @@ def getMunros():
     else:
         return {'msg':'Resource not found'}, 404
 
-app.run()
+# app.run()
