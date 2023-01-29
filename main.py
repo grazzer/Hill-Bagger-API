@@ -44,7 +44,7 @@ def getHillByName(name):
     if result:
         df = pd.read_sql(result.statement, result.session.bind)
         jsonResult = df.to_json(orient = 'records')
-        return jsonResult
+        return jsonResult [1:-1]
     else:
         return {'msg':'Resource not found'}, 404
 
@@ -54,7 +54,7 @@ def getHillByNumber(number):
     if result:
         df = pd.read_sql(result.statement, result.session.bind)
         jsonResult = df.to_json(orient = 'records')
-        return jsonResult
+        return jsonResult [1:-1]
     else:
         return {'msg':'Resource not found'}, 404
 
@@ -68,4 +68,4 @@ def getMunros():
     else:
         return {'msg':'Resource not found'}, 404
 
-# app.run()
+app.run()
